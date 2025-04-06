@@ -1,5 +1,17 @@
 import mongoose from 'mongoose'
 
+const orderItemSchema = new mongoose.Schema({
+    productId : {
+        type: moongoose.Schema.Types.ObjectId,
+        ref : "Product"
+    },
+    quality :{
+        type: Number,
+        required: true,
+    },
+
+})
+
 const orderSchema = new mongoose.Schema({
     orderPrice : {
         type: Number,
@@ -11,7 +23,16 @@ const orderSchema = new mongoose.Schema({
     
     },
     orderItems : {
-        
+        type: [orderItemSchema]
+    },
+    address : {
+        type: String,
+        required: true,
+    },
+    status:{
+        type: String,
+        enum: ["Pending", "Cancelled", "Delivered"],
+        default: "Pending"
     }
 
 }
